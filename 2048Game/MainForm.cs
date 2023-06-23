@@ -76,7 +76,49 @@ namespace _2048Game
         {
             if(e.KeyCode == Keys.Up)
             {
+                for (int j = 0; j < mapSize; j++)
+                {
+                    for (int i = 0; i < mapSize; i++)
+                    {
+                        if (labelsMap[i, j].Text != string.Empty)
+                        {
+                            for (int k = i + 1; k < mapSize; k++)
+                            {
+                                if (labelsMap[k, j].Text != string.Empty)
+                                {
+                                    if (labelsMap[i, j].Text == labelsMap[k, j].Text)
+                                    {
+                                        var number = int.Parse(labelsMap[i, j].Text);
+                                        labelsMap[i, j].Text = (number * 2).ToString();
+                                        labelsMap[k, j].Text = string.Empty;
+                                    }
 
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                for (int j = 0; j < mapSize; j++)
+                {
+                    for (int i = 0; i < mapSize; i++)
+                    {
+                        if (labelsMap[i, j].Text == string.Empty)
+                        {
+                            for (int k = i + 1; k < mapSize; k++)
+                            {
+                                if (labelsMap[k, j].Text != string.Empty)
+                                {
+                                    labelsMap[i, j].Text = labelsMap[k, j].Text;
+                                    labelsMap[k, j].Text = string.Empty;
+
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             if (e.KeyCode == Keys.Right)
@@ -128,7 +170,49 @@ namespace _2048Game
 
             if (e.KeyCode == Keys.Down)
             {
+                for (int j = 0; j < mapSize; j++)
+                {
+                    for (int i = mapSize - 1; i >= 0; i--)
+                    {
+                        if (labelsMap[i, j].Text != string.Empty)
+                        {
+                            for (int k = i - 1; k >= 0; k--)
+                            {
+                                if (labelsMap[k, j].Text != string.Empty)
+                                {
+                                    if (labelsMap[i, j].Text == labelsMap[k, j].Text)
+                                    {
+                                        var number = int.Parse(labelsMap[i, j].Text);
+                                        labelsMap[i, j].Text = (number * 2).ToString();
+                                        labelsMap[k, j].Text = string.Empty;
+                                    }
 
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                for (int j = 0; j < mapSize; j++)
+                {
+                    for (int i = mapSize - 1; i >= 0; i--)
+                    {
+                        if (labelsMap[i, j].Text == string.Empty)
+                        {
+                            for (int k = i - 1; k >= 0; k--)
+                            {
+                                if (labelsMap[k, j].Text != string.Empty)
+                                {
+                                    labelsMap[i, j].Text = labelsMap[k, j].Text;
+                                    labelsMap[k, j].Text = string.Empty;
+
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             if (e.KeyCode == Keys.Left)
