@@ -16,6 +16,7 @@ namespace _2048Game
         private const int mapSize = 4;
         private Label[,] labelsMap;
         private static Random random = new Random();
+        private int score = 0;
 
         public MainForm()
         {
@@ -26,7 +27,13 @@ namespace _2048Game
         {
             InitMap();
             GenerateNumber();
+            ShowScore();
 
+        }
+
+        private void ShowScore()
+        {
+            scoreLabel.Text = score.ToString();
         }
 
         private void GenerateNumber()
@@ -68,7 +75,7 @@ namespace _2048Game
             label.Font = new Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
             label.Size = new Size(70, 70);
             label.TextAlign = ContentAlignment.MiddleCenter;
-            label.Location = new Point(10 + columnIndex * 75, 10 + rowIndex * 75);
+            label.Location = new Point(10 + columnIndex * 75, 30 + rowIndex * 75);
             return label;
         }
 
@@ -91,6 +98,7 @@ namespace _2048Game
                                         var number = int.Parse(labelsMap[i, j].Text);
                                         labelsMap[i, j].Text = (number * 2).ToString();
                                         labelsMap[k, j].Text = string.Empty;
+                                        score += number * 2;
                                     }
 
                                     break;
@@ -138,6 +146,7 @@ namespace _2048Game
                                         var number = int.Parse(labelsMap[i, j].Text);
                                         labelsMap[i, j].Text = (number * 2).ToString();
                                         labelsMap[i, k].Text = string.Empty;
+                                        score += number * 2;
                                     }
 
                                     break;
@@ -185,6 +194,7 @@ namespace _2048Game
                                         var number = int.Parse(labelsMap[i, j].Text);
                                         labelsMap[i, j].Text = (number * 2).ToString();
                                         labelsMap[k, j].Text = string.Empty;
+                                        score += number * 2;
                                     }
 
                                     break;
@@ -232,6 +242,7 @@ namespace _2048Game
                                         var number = int.Parse(labelsMap[i, j].Text);
                                         labelsMap[i, j].Text = (number * 2).ToString();
                                         labelsMap[i, k].Text = string.Empty;
+                                        score += number * 2;
                                     }
 
                                     break;
@@ -263,6 +274,7 @@ namespace _2048Game
             }
 
             GenerateNumber();
+            ShowScore();
         }
     }
 }
