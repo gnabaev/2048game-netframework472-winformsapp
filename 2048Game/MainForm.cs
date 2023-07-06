@@ -38,6 +38,8 @@ namespace _2048Game
 
         private void GenerateNumber()
         {
+            var random = new Random();
+
             while (true)
             {
                 var labelNumber = random.Next(mapSize * mapSize);
@@ -46,7 +48,17 @@ namespace _2048Game
 
                 if (labelsMap[rowIndex, rowColumn].Text == string.Empty)
                 {
-                    labelsMap[rowIndex, rowColumn].Text = "2";
+                    var randomNumber = random.Next(1,5);
+
+                    if (randomNumber <= 3)
+                    {
+                        labelsMap[rowIndex, rowColumn].Text = "2";
+                    }
+                    else
+                    {
+                        labelsMap[rowIndex, rowColumn].Text = "4";
+                    }
+
                     break;
                 }
             }
@@ -75,7 +87,7 @@ namespace _2048Game
             label.Font = new Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold);
             label.Size = new Size(70, 70);
             label.TextAlign = ContentAlignment.MiddleCenter;
-            label.Location = new Point(10 + columnIndex * 75, 30 + rowIndex * 75);
+            label.Location = new Point(10 + columnIndex * 75, 54 + rowIndex * 75);
             return label;
         }
 
@@ -275,6 +287,21 @@ namespace _2048Game
 
             GenerateNumber();
             ShowScore();
+        }
+
+        private void restartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+        private void rulesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Вероятность выпадения цифры 2 - 75%, 4 - 25%", "Правила игры");
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
